@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7528.3" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7518.3"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GameOfLife" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,8 +16,58 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rC7-Ec-udG">
+                                <rect key="frame" x="123" y="28" width="33" height="30"/>
+                                <state key="normal" title="Start">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="33O-Ff-LgT"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VGw-Mg-IRy">
+                                <rect key="frame" x="62" y="124" width="476" height="476"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="370" id="CxD-vb-4Zh"/>
+                                    <constraint firstAttribute="width" secondItem="VGw-Mg-IRy" secondAttribute="height" multiplier="1:1" id="qb9-cv-3MN"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="CxD-vb-4Zh"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLd-cX-8wA">
+                                <rect key="frame" x="459" y="28" width="37" height="30"/>
+                                <state key="normal" title="Clear">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clearAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1cZ-5m-FF0"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VGw-Mg-IRy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7dB-q6-FAB"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VGw-Mg-IRy" secondAttribute="trailing" id="BOX-6L-ADV"/>
+                            <constraint firstAttribute="trailing" secondItem="iLd-cX-8wA" secondAttribute="trailing" constant="104" id="CJJ-zL-nbE"/>
+                            <constraint firstItem="VGw-Mg-IRy" firstAttribute="top" secondItem="iLd-cX-8wA" secondAttribute="bottom" constant="66" id="OWW-1q-4uN"/>
+                            <constraint firstAttribute="centerX" secondItem="VGw-Mg-IRy" secondAttribute="centerX" id="YQM-Kb-xNz"/>
+                            <constraint firstItem="VGw-Mg-IRy" firstAttribute="top" secondItem="rC7-Ec-udG" secondAttribute="bottom" constant="66" id="aPy-ru-csa"/>
+                            <constraint firstItem="iLd-cX-8wA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="iLA-bB-cak"/>
+                            <constraint firstItem="rC7-Ec-udG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="123" id="ksi-Ut-PyQ"/>
+                            <constraint firstItem="rC7-Ec-udG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="wkj-oQ-JzV"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VGw-Mg-IRy" secondAttribute="bottom" id="y6K-Ld-nsf"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="clearBtn" destination="iLd-cX-8wA" id="SL4-KP-8Jb"/>
+                        <outlet property="gameField" destination="VGw-Mg-IRy" id="YSe-Nm-WfO"/>
+                        <outlet property="startBtn" destination="rC7-Ec-udG" id="jcJ-oD-VOt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
