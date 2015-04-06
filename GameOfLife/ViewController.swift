@@ -12,6 +12,7 @@ class ViewController: UIViewController, GameDelegate {
     @IBOutlet weak var startBtn: UIButton!
     @IBOutlet weak var clearBtn: UIButton!
     @IBOutlet weak var gameField: UIView!
+    @IBOutlet weak var generationCounter: UILabel!
     
     private let cellSize: CGFloat = 35
     private var cells: [Index : CellView]!
@@ -88,6 +89,7 @@ class ViewController: UIViewController, GameDelegate {
     //MARK: Game delegate
     
     func updateField(newGeneration matrix: GenerationMatrix) {
+        self.generationCounter.text = "Gen: \(self.game.generationCount)"
         for (index, cell) in self.cells {
             cell.changeCellState(matrix[index]!, animated: true)
             self.game.changeCurrentMatrix(atIndex: index, toState: matrix[index]!)

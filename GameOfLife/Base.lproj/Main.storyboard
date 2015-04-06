@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rC7-Ec-udG">
-                                <rect key="frame" x="123" y="28" width="33" height="30"/>
+                                <rect key="frame" x="40" y="28" width="33" height="30"/>
                                 <state key="normal" title="Start">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -27,7 +27,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VGw-Mg-IRy">
-                                <rect key="frame" x="62" y="124" width="476" height="476"/>
+                                <rect key="frame" x="49" y="98" width="502" height="502"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="370" id="CxD-vb-4Zh"/>
@@ -40,7 +40,7 @@
                                 </variation>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLd-cX-8wA">
-                                <rect key="frame" x="459" y="28" width="37" height="30"/>
+                                <rect key="frame" x="523" y="28" width="37" height="30"/>
                                 <state key="normal" title="Clear">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -48,24 +48,33 @@
                                     <action selector="clearAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1cZ-5m-FF0"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Gen: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNI-n7-ovC">
+                                <rect key="frame" x="269" y="32" width="62" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="VGw-Mg-IRy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7dB-q6-FAB"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VGw-Mg-IRy" secondAttribute="trailing" id="BOX-6L-ADV"/>
-                            <constraint firstAttribute="trailing" secondItem="iLd-cX-8wA" secondAttribute="trailing" constant="104" id="CJJ-zL-nbE"/>
-                            <constraint firstItem="VGw-Mg-IRy" firstAttribute="top" secondItem="iLd-cX-8wA" secondAttribute="bottom" constant="66" id="OWW-1q-4uN"/>
+                            <constraint firstAttribute="trailing" secondItem="iLd-cX-8wA" secondAttribute="trailing" constant="40" id="CJJ-zL-nbE"/>
+                            <constraint firstItem="VGw-Mg-IRy" firstAttribute="top" secondItem="iLd-cX-8wA" secondAttribute="bottom" constant="40" id="OWW-1q-4uN"/>
                             <constraint firstAttribute="centerX" secondItem="VGw-Mg-IRy" secondAttribute="centerX" id="YQM-Kb-xNz"/>
-                            <constraint firstItem="VGw-Mg-IRy" firstAttribute="top" secondItem="rC7-Ec-udG" secondAttribute="bottom" constant="66" id="aPy-ru-csa"/>
+                            <constraint firstItem="VGw-Mg-IRy" firstAttribute="top" secondItem="rC7-Ec-udG" secondAttribute="bottom" constant="40" id="aPy-ru-csa"/>
                             <constraint firstItem="iLd-cX-8wA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="iLA-bB-cak"/>
-                            <constraint firstItem="rC7-Ec-udG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="123" id="ksi-Ut-PyQ"/>
+                            <constraint firstItem="rC7-Ec-udG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="ksi-Ut-PyQ"/>
+                            <constraint firstAttribute="centerX" secondItem="rNI-n7-ovC" secondAttribute="centerX" id="u3X-JF-28n"/>
                             <constraint firstItem="rC7-Ec-udG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="wkj-oQ-JzV"/>
+                            <constraint firstItem="rNI-n7-ovC" firstAttribute="centerY" secondItem="rC7-Ec-udG" secondAttribute="centerY" id="xsE-bu-zIu"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VGw-Mg-IRy" secondAttribute="bottom" id="y6K-Ld-nsf"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="clearBtn" destination="iLd-cX-8wA" id="SL4-KP-8Jb"/>
                         <outlet property="gameField" destination="VGw-Mg-IRy" id="YSe-Nm-WfO"/>
+                        <outlet property="generationCounter" destination="rNI-n7-ovC" id="n1C-tQ-lcC"/>
                         <outlet property="startBtn" destination="rC7-Ec-udG" id="jcJ-oD-VOt"/>
                     </connections>
                 </viewController>

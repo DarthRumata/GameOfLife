@@ -21,7 +21,7 @@ class Game {
     private var fieldSize: Int
     private let delegate: GameDelegate
     var isActive = false
-    private(set) var populationCount: Int = 0
+    private(set) var generationCount: Int = 0
     
     init(seedMatrix: GenerationMatrix, delegate: GameDelegate) {
         self.currentMatrix = seedMatrix
@@ -42,7 +42,7 @@ class Game {
     
     func reset() {
         self.changeGameState(isActive: false)
-        self.populationCount = 0
+        self.generationCount = 0
         for index in self.currentMatrix.keys {
             self.currentMatrix[index] = .Dead
         }
@@ -65,6 +65,7 @@ class Game {
                 return
             }
             self.currentMatrix = self.calculateNextGenMatrix()
+            self.generationCount++
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.delegate.updateField(newGeneration: self.currentMatrix)
                 self.resume()
