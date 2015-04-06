@@ -21,6 +21,7 @@ class Game {
     private var fieldSize: Int
     private let delegate: GameDelegate
     var isActive = false
+    private(set) var populationCount: Int = 0
     
     init(seedMatrix: GenerationMatrix, delegate: GameDelegate) {
         self.currentMatrix = seedMatrix
@@ -37,6 +38,15 @@ class Game {
         if (self.isActive) {
             self.resume()
         }
+    }
+    
+    func reset() {
+        self.changeGameState(isActive: false)
+        self.populationCount = 0
+        for index in self.currentMatrix.keys {
+            self.currentMatrix[index] = .Dead
+        }
+        self.delegate.updateField(newGeneration: self.currentMatrix)
     }
     
     func changeCurrentMatrix(atIndex index: Index, toState state: CellState) {
@@ -95,15 +105,12 @@ class Game {
         var count = 0
         for row in lowRow...highRow {
             for column in lowColumn...highColumn {
-                if (row == index.row && column == index.column) {
+                let currentIndex = Index(row: row, column: column)
+                if (index == currentIndex) {
                     continue
                 }
-                
-                if (row >= self.fieldSize || row < 0 || column >= self.fieldSize || column < 0) {
-                    continue
-                }
-                
-                if (self.currentMatrix[Index(row: row, column: column)] == .Alive) {
+                let state = self.currentMatrix[currentIndex]
+                if state != nil && state! == .Alive {
                     count++
                 }
             }

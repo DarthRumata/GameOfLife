@@ -42,8 +42,8 @@ class ViewController: UIViewController, GameDelegate {
        let leftover = self.gameField.bounds.width - quantity * cellSize
         self.cells = Dictionary<Index, CellView>()
         var seed = GenerationMatrix()
-        for row in 0...Int(quantity) {
-            for column in 0...Int(quantity) {
+        for row in 0...Int(quantity - 1) {
+            for column in 0...Int(quantity - 1) {
                 let cell = CellView(frame: CGRectMake(leftover / 2 + CGFloat(column) * cellSize, leftover / 2 + CGFloat(row) * cellSize, cellSize, cellSize))
                 self.gameField.addSubview(cell)
                 let index = Index(row: row, column: column)
@@ -67,7 +67,7 @@ class ViewController: UIViewController, GameDelegate {
     func tapField(gesture: UIGestureRecognizer) {
        let tappedCell = self.gameField.hitTest(gesture.locationInView(self.gameField), withEvent: nil) as? CellView
         if (tappedCell != nil) {
-            tappedCell!.changeCellState()
+            tappedCell!.changeCellState(false)
             let index = allKeysForValue(self.cells, val: tappedCell!).first!
             self.game.changeCurrentMatrix(atIndex: index, toState: tappedCell!.state)
         }
@@ -81,18 +81,15 @@ class ViewController: UIViewController, GameDelegate {
     }
 
     @IBAction func clearAction(sender: AnyObject) {
-        self.game.changeGameState(isActive: false)
+        self.game.reset()
         self.updateStartBtn()
-        for cell in self.cells.values {
-            cell.changeCellState(.Dead)
-        }
     }
     
     //MARK: Game delegate
     
     func updateField(newGeneration matrix: GenerationMatrix) {
         for (index, cell) in self.cells {
-            cell.changeCellState(matrix[index]!)
+            cell.changeCellState(matrix[index]!, animated: true)
             self.game.changeCurrentMatrix(atIndex: index, toState: matrix[index]!)
         }
     }
