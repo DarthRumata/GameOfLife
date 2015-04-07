@@ -12,7 +12,7 @@ import UIKit
 typealias GenerationMatrix = [Index : CellState]
 
 enum GameOverVariant: String {
-    case AllAreDead = "No cells has not survived :("
+    case AllAreDead = "No cells has survived :("
     case AbsoluteStability = "Growth is stopped and nobody dies"
     case InfiniteCycle = "Oscillatory mode detected!"
     case ShowMustGoOn = ""

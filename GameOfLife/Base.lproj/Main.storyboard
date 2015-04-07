@@ -34,29 +34,47 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o6T-oI-5co" userLabel="HeaderView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                                 <subviews>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rC7-Ec-udG">
-                                        <rect key="frame" x="35" y="25" width="61" height="37"/>
-                                        <fontDescription key="fontDescription" name="Superclarendon-Bold" family="Superclarendon" pointSize="20"/>
-                                        <state key="normal" title="Start">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="startAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="33O-Ff-LgT"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLd-cX-8wA">
-                                        <rect key="frame" x="501" y="25" width="64" height="37"/>
-                                        <fontDescription key="fontDescription" name="Superclarendon-Bold" family="Superclarendon" pointSize="20"/>
-                                        <state key="normal" title="Clear">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="clearAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1cZ-5m-FF0"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Generation: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNI-n7-ovC">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jkd-mq-EOt" userLabel="left">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="70"/>
+                                        <subviews>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rC7-Ec-udG">
+                                                <rect key="frame" x="85" y="25" width="61" height="37"/>
+                                                <fontDescription key="fontDescription" name="Superclarendon-Bold" family="Superclarendon" pointSize="20"/>
+                                                <state key="normal" title="Start">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="startAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="33O-Ff-LgT"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="centerX" secondItem="rC7-Ec-udG" secondAttribute="centerX" constant="35" id="KW2-WO-Uvi"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pB8-ei-WTK" userLabel="right">
+                                        <rect key="frame" x="300" y="0.0" width="300" height="70"/>
+                                        <subviews>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLd-cX-8wA">
+                                                <rect key="frame" x="153" y="25" width="64" height="37"/>
+                                                <fontDescription key="fontDescription" name="Superclarendon-Bold" family="Superclarendon" pointSize="20"/>
+                                                <state key="normal" title="Clear">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="clearAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1cZ-5m-FF0"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="centerX" secondItem="iLd-cX-8wA" secondAttribute="centerX" constant="-35" id="W7g-xT-hSx"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Generation: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="rNI-n7-ovC">
                                         <rect key="frame" x="225" y="30" width="151" height="27"/>
                                         <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="22"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -65,20 +83,22 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="iLd-cX-8wA" firstAttribute="centerY" secondItem="rNI-n7-ovC" secondAttribute="centerY" id="3LX-1p-LmH"/>
+                                    <constraint firstItem="rC7-Ec-udG" firstAttribute="centerY" secondItem="rNI-n7-ovC" secondAttribute="centerY" id="2Mc-Sl-dbd"/>
+                                    <constraint firstItem="pB8-ei-WTK" firstAttribute="top" secondItem="o6T-oI-5co" secondAttribute="top" id="7eJ-SJ-waH"/>
                                     <constraint firstItem="rNI-n7-ovC" firstAttribute="top" secondItem="o6T-oI-5co" secondAttribute="top" constant="30" id="8qh-Qr-nbO"/>
-                                    <constraint firstItem="rC7-Ec-udG" firstAttribute="leading" secondItem="o6T-oI-5co" secondAttribute="leading" constant="35" id="TjK-LE-Him"/>
-                                    <constraint firstItem="rC7-Ec-udG" firstAttribute="centerY" secondItem="rNI-n7-ovC" secondAttribute="centerY" id="m7G-8D-1CO"/>
-                                    <constraint firstAttribute="trailing" secondItem="iLd-cX-8wA" secondAttribute="trailing" constant="35" id="p3m-XM-cBW"/>
-                                    <constraint firstItem="iLd-cX-8wA" firstAttribute="leading" secondItem="o6T-oI-5co" secondAttribute="leading" constant="35" id="rad-mY-KdO"/>
+                                    <constraint firstItem="iLd-cX-8wA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rNI-n7-ovC" secondAttribute="trailing" constant="5" id="FaR-w6-hg8"/>
+                                    <constraint firstAttribute="bottom" secondItem="pB8-ei-WTK" secondAttribute="bottom" id="HYg-7U-3Ev"/>
+                                    <constraint firstItem="rNI-n7-ovC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rC7-Ec-udG" secondAttribute="trailing" constant="5" id="LMb-8E-idL"/>
+                                    <constraint firstItem="jkd-mq-EOt" firstAttribute="leading" secondItem="o6T-oI-5co" secondAttribute="leading" id="Ngi-iq-OId"/>
+                                    <constraint firstItem="jkd-mq-EOt" firstAttribute="top" secondItem="o6T-oI-5co" secondAttribute="top" id="Vdr-kJ-kGQ"/>
+                                    <constraint firstItem="pB8-ei-WTK" firstAttribute="leading" secondItem="jkd-mq-EOt" secondAttribute="trailing" id="eke-9E-xMs"/>
+                                    <constraint firstAttribute="bottom" secondItem="jkd-mq-EOt" secondAttribute="bottom" id="f5J-iZ-I7r"/>
+                                    <constraint firstAttribute="trailing" secondItem="pB8-ei-WTK" secondAttribute="trailing" id="gLE-xy-dop"/>
+                                    <constraint firstItem="iLd-cX-8wA" firstAttribute="centerY" secondItem="rNI-n7-ovC" secondAttribute="centerY" id="loC-d6-2m6"/>
                                     <constraint firstAttribute="centerX" secondItem="rNI-n7-ovC" secondAttribute="centerX" id="sGN-wd-zN1"/>
                                     <constraint firstAttribute="height" constant="70" id="xSS-In-Tt8"/>
+                                    <constraint firstItem="jkd-mq-EOt" firstAttribute="width" secondItem="pB8-ei-WTK" secondAttribute="width" id="yUu-cs-5uH"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="rad-mY-KdO"/>
-                                    </mask>
-                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
