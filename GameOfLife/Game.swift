@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 typealias GenerationMatrix = [Index : CellState]
 
@@ -18,14 +19,12 @@ class Game {
     
     private let cycleTime: Double = 0.5
     private var currentMatrix: GenerationMatrix!
-    private var fieldSize: Int
     private let delegate: GameDelegate
     var isActive = false
     private(set) var generationCount: Int = 0
     
     init(seedMatrix: GenerationMatrix, delegate: GameDelegate) {
         self.currentMatrix = seedMatrix
-        self.fieldSize = Int(sqrt(Float(seedMatrix.count)))
         self.delegate = delegate
     }
     
