@@ -11,8 +11,16 @@ import UIKit
 
 typealias GenerationMatrix = [Index : CellState]
 
+enum GameOverVariant: String {
+    case AllAreDead = "No cells has not survived :("
+    case AbsoluteStability = "Growth is stopped and nobody dies"
+    case InfiniteCycle = "Oscillatory mode detected!"
+    case ShowMustGoOn = ""
+}
+
 protocol GameDelegate {
     func updateField(newGeneration matrix: GenerationMatrix)
+    func alarmCollapsedGame(reason: String)
 }
 
 class Game {
@@ -22,6 +30,7 @@ class Game {
     private let delegate: GameDelegate
     var isActive = false
     private(set) var generationCount: Int = 0
+    private(set) var aliveCount: Int = 0
     
     init(seedMatrix: GenerationMatrix, delegate: GameDelegate) {
         self.currentMatrix = seedMatrix
@@ -42,6 +51,7 @@ class Game {
     func reset() {
         self.changeGameState(isActive: false)
         self.generationCount = 0
+        self.aliveCount = 0
         for index in self.currentMatrix.keys {
             self.currentMatrix[index] = .Dead
         }
@@ -63,7 +73,16 @@ class Game {
             if (!self.isActive) {
                 return
             }
-            self.currentMatrix = self.calculateNextGenMatrix()
+            let nextMatrix = self.calculateNextGenMatrix()
+            let gameOverState = self.checkGameForCollapse(nextMatrix)
+            if (gameOverState != .ShowMustGoOn) {
+                self.changeGameState()
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.delegate.alarmCollapsedGame(gameOverState.rawValue)
+                })
+                return
+            }
+            self.currentMatrix = nextMatrix
             self.generationCount++
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.delegate.updateField(newGeneration: self.currentMatrix)
@@ -74,6 +93,7 @@ class Game {
     
     private func calculateNextGenMatrix() -> GenerationMatrix {
         var nextGen = GenerationMatrix()
+        self.aliveCount = 0
         for (index, state) in self.currentMatrix {
             let aliveNeighBours = self.countAliveNeighbour(index)
             switch(aliveNeighBours) {
@@ -83,12 +103,14 @@ class Game {
                 case 2...3 where state == .Alive:
                     println("Still alive at index \(index)")
                     nextGen[index] = .Alive
+                self.aliveCount++
                 case 4...8 where state == .Alive:
                 println("Died by overcrowding at index \(index)")
                 nextGen[index] = .Dead
             case 3 where state == .Dead:
                 println("Cell was born at index \(index)")
                 nextGen[index] = .Alive
+                self.aliveCount++
             default:
                nextGen[index] = .Dead
             }
@@ -117,6 +139,21 @@ class Game {
         }
         
         return count
+    }
+    
+    private func checkGameForCollapse(matrix: GenerationMatrix) -> GameOverVariant {
+        if (self.aliveCount == 0) {
+            return .AllAreDead
+        }
+        var isEqualToPrevious = true
+        for (index, state) in matrix {
+            if (self.currentMatrix[index] != state) {
+                isEqualToPrevious = false
+                break
+            }
+        }
+        
+        return isEqualToPrevious ? .AbsoluteStability : .ShowMustGoOn
     }
     
 }

@@ -104,6 +104,16 @@ class ViewController: UIViewController, GameDelegate {
         }
     }
     
+    func alarmCollapsedGame(reason: String) {
+        self.updateStartBtn()
+        let alertController = UIAlertController(title: "Game over", message: reason, preferredStyle: .Alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(OKAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
     func allKeysForValue<K, V : Equatable>(dict: [K : V], val: V) -> [K] {
         return map(filter(dict) { $1 == val }) { $0.0 }
     }
