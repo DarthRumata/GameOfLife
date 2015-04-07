@@ -17,7 +17,7 @@ protocol GameDelegate {
 
 class Game {
     
-    private let cycleTime: Double = 0.5
+    private let cycleTime: Double = 0.35
     private var currentMatrix: GenerationMatrix!
     private let delegate: GameDelegate
     var isActive = false
