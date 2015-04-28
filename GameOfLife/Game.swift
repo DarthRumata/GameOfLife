@@ -79,18 +79,18 @@ class Game {
             let nextMatrix = self.calculateNextGenMatrix()
             let gameOverState = self.checkGameForCollapse(nextMatrix)
             self.currentMatrix = nextMatrix
-            if (gameOverState != .ShowMustGoOn) {
-                self.changeGameState()
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.delegate.alarmCollapsedGame(gameOverState.rawValue)
-                })
-                return
-            }
             self.generationCount++
             self.historyOfGeneration.insert(self.createHash(self.currentMatrix))
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.delegate.updateField(newGeneration: self.currentMatrix)
-                self.resume()
+                if (gameOverState != .ShowMustGoOn) {
+                    self.changeGameState()
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.delegate.alarmCollapsedGame(gameOverState.rawValue)
+                    })
+                } else {
+                    self.resume()
+                }
             })
         }
     }
