@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-enum CellState {
-    case Alive, Dead
+enum CellState: Int {
+    case Alive = 1, Dead
 }
 
 class CellView: UIView {

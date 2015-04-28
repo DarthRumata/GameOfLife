@@ -99,7 +99,7 @@ class ViewController: UIViewController, GameDelegate {
         self.generationCounter.text = "Generation: \(self.game.generationCount)"
         for (index, cell) in self.cells {
             cell.changeCellState(matrix[index.row][index.column], animated: true)
-            self.game.changeCurrentMatrix(atIndex: index, toState: matrix[index.row][index.column])
+           // self.game.changeCurrentMatrix(atIndex: index, toState: matrix[index.row][index.column])
         }
     }
     

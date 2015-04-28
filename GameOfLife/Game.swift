@@ -31,6 +31,7 @@ class Game {
     var isActive = false
     private(set) var generationCount: Int = 0
     private(set) var aliveCount: Int = 0
+    private var historyOfGeneration = Set<String>()
     
     init(seedMatrix: GenerationMatrix, delegate: GameDelegate) {
         self.currentMatrix = seedMatrix
@@ -86,6 +87,7 @@ class Game {
                 return
             }
             self.generationCount++
+            self.historyOfGeneration.insert(self.createHash(self.currentMatrix))
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.delegate.updateField(newGeneration: self.currentMatrix)
                 self.resume()
@@ -102,16 +104,12 @@ class Game {
                 let state = self.currentMatrix[row][column]
                 let aliveNeighBours = self.countAliveNeighbour(index)
                 switch(aliveNeighBours) {
-                case 0...1 where state == .Alive:
-                    println("Died by under-population at index \(index)")
                 case 2...3 where state == .Alive:
-                    println("Still alive at index \(index)")
+                   // println("Still alive at index \(index)")
                     nextGen[index.row][index.column] = .Alive
                     self.aliveCount++
-                case 4...8 where state == .Alive:
-                    println("Died by overcrowding at index \(index)")
                 case 3 where state == .Dead:
-                    println("Cell was born at index \(index)")
+                   // println("Cell was born at index \(index)")
                     nextGen[index.row][index.column] = .Alive
                     self.aliveCount++
                 default:
@@ -152,20 +150,24 @@ class Game {
         if (self.aliveCount == 0) {
             return .AllAreDead
         }
-        var isEqualToPrevious = true
-        for row in 0..<self.currentMatrix.count {
-            for column in 0..<self.currentMatrix[row].count {
-                if (self.currentMatrix[row][column] != matrix[row][column]) {
-                isEqualToPrevious = false
-                break
-            }
-        }
-        }
+        var isEqualToPrevious = self.historyOfGeneration.contains(createHash(matrix))
         
         return isEqualToPrevious ? .AbsoluteStability : .ShowMustGoOn
     }
     
+    private func createHash(matrix: GenerationMatrix) -> String {
+        var matrixHash = ""
+        for row in matrix {
+            for column in row {
+                matrixHash += String(column.rawValue)
+            }
+        }
+        return matrixHash
+    }
+    
 }
+
+
 
 struct Index: Hashable, Printable {
     var row: Int

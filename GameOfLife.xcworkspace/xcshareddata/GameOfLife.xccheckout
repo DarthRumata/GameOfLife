@@ -5,20 +5,20 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>D4E588A0-808D-43D4-AB58-AAD85645E3FB</string>
+	<string>D1E1001C-1FD0-4B5D-9D94-A87BF421E6D5</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>GameOfLife</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>D71D4BB3A404A71B52DC0FD9A2D600A43A88317A</key>
 		<string>https://github.com/DarthRumata/GameOfLife.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>GameOfLife.xcodeproj/project.xcworkspace</string>
+	<string>GameOfLife.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>D71D4BB3A404A71B52DC0FD9A2D600A43A88317A</key>
-		<string>../..</string>
+		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/DarthRumata/GameOfLife.git</string>
