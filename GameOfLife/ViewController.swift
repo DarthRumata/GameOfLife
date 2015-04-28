@@ -99,18 +99,12 @@ class ViewController: UIViewController, GameDelegate {
         self.generationCounter.text = "Generation: \(self.game.generationCount)"
         for (index, cell) in self.cells {
             cell.changeCellState(matrix[index.row][index.column], animated: true)
-           // self.game.changeCurrentMatrix(atIndex: index, toState: matrix[index.row][index.column])
         }
     }
     
     func alarmCollapsedGame(reason: String) {
         self.updateStartBtn()
-        let alertController = UIAlertController(title: "Game over", message: reason, preferredStyle: .Alert)
-        
-        let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-        alertController.addAction(OKAction)
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
+        TSMessage.showNotificationWithTitle("Game over", subtitle: reason, type: TSMessageNotificationType.Error)
     }
     
     func allKeysForValue<K, V : Equatable>(dict: [K : V], val: V) -> [K] {
