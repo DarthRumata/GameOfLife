@@ -85,6 +85,7 @@ class ViewController: UIViewController, GameDelegate {
     
     @IBAction func startAction(sender: AnyObject) {
         self.game.changeGameState()
+        self.game.cleanStats()
         self.updateStartBtn()
     }
 

@@ -49,10 +49,14 @@ class Game {
         }
     }
     
-    func reset() {
-        self.changeGameState(isActive: false)
+    func cleanStats() {
         self.generationCount = 0
         self.aliveCount = 0
+    }
+    
+    func reset() {
+        self.changeGameState(isActive: false)
+        self.cleanStats()
         for row in 0..<self.currentMatrix.count {
             for column in 0..<self.currentMatrix[row].count {
                 self.currentMatrix[row][column] = .Dead
@@ -147,12 +151,16 @@ class Game {
     }
     
     private func checkGameForCollapse(matrix: GenerationMatrix) -> GameOverVariant {
+        let newMatrixHash = createHash(matrix)
         if (self.aliveCount == 0) {
             return .AllAreDead
+        } else if (createHash(self.currentMatrix) == newMatrixHash) {
+            return .AbsoluteStability
+        } else if (self.historyOfGeneration.contains(newMatrixHash)) {
+            return  .InfiniteCycle
         }
-        var isEqualToPrevious = self.historyOfGeneration.contains(createHash(matrix))
         
-        return isEqualToPrevious ? .AbsoluteStability : .ShowMustGoOn
+        return  .ShowMustGoOn
     }
     
     private func createHash(matrix: GenerationMatrix) -> String {
